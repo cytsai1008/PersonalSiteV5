@@ -14,9 +14,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start server
+        run: npx http-server &
+
+      - name: Take screenshot
+        run: node devscript/screenshot.js
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
-          exclude_assets: '.github/,.idea/,node_modules/,package.json,package-lock.json,.gitignore,.stylelintrc.json,eslint.config.js,GEMINI.md'
+          exclude_assets: '.github/,.idea/,node_modules/,devscript/,package.json,package-lock.json,.gitignore,.stylelintrc.json,eslint.config.js,GEMINI.md'
