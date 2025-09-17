@@ -10,35 +10,50 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Footer icon click handlers
-    const footerIcons = document.querySelectorAll('.footer-icon');
-    footerIcons.forEach(icon => {
-        icon.addEventListener('click', function() {
-            const iconName = this.querySelector('.material-symbols-rounded').textContent;
-            console.log(`Clicked ${iconName} icon`);
-        });
-    });
+    
 
-    // Mobile section click handlers
-    const mobileSections = document.querySelectorAll('.mobile-section');
-    mobileSections.forEach(section => {
-        section.addEventListener('click', function() {
-            this.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 150);
-        });
-    });
-
-    // Footer scroll behavior
+    // Mouse hover effect for life sections
+    const realLifeSection = document.querySelector('.real-life');
+    const furryLifeSection = document.querySelector('.furry-life');
+    const desktopLayout = document.querySelector('.desktop-layout');
     const footer = document.querySelector('.footer');
+    let isMouseInFooter = false;
 
-    window.addEventListener('scroll', () => {
-        // Show footer if scrolled down, hide if at the top
-        if (window.scrollY > 0) {
-            footer.classList.add('show');
-        } else {
-            footer.classList.remove('show');
+    if (desktopLayout && window.matchMedia('(min-width: 769px)').matches) {
+        if (footer) {
+            footer.addEventListener('mouseenter', () => {
+                isMouseInFooter = true;
+                realLifeSection.classList.remove('expanded');
+                furryLifeSection.classList.remove('expanded');
+            });
+
+            footer.addEventListener('mouseleave', () => {
+                isMouseInFooter = false;
+            });
         }
-    });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isMouseInFooter) {
+                return;
+            }
+            const windowWidth = window.innerWidth;
+            const mouseX = e.clientX;
+
+            if (mouseX < windowWidth / 3) {
+                realLifeSection.classList.add('expanded');
+                furryLifeSection.classList.remove('expanded');
+            } else if (mouseX > windowWidth * 2 / 3) {
+                furryLifeSection.classList.add('expanded');
+                realLifeSection.classList.remove('expanded');
+            } else {
+                realLifeSection.classList.remove('expanded');
+                furryLifeSection.classList.remove('expanded');
+            }
+        });
+
+        document.addEventListener('mouseleave', () => {
+            realLifeSection.classList.remove('expanded');
+            furryLifeSection.classList.remove('expanded');
+        });
+    }
 });
