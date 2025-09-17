@@ -1,3 +1,4 @@
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -13,13 +14,25 @@ body {
     flex-direction: column;
 }
 
+
+/* Header */
+.main-header {
+    text-align: center;
+    padding: 2rem;
+
+    /* we are in ai era, of course our favorite color is purple gradient (no i hate it, so fucking bright) */
+    background: linear-gradient(45deg, #4f46e5, #8b5cf6);
+    color: white;
+}
+
+/* Main Container */
 .main-container {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-/* Desktop Layout */
+/* Layout */
 .desktop-layout {
     display: flex;
     flex: 1;
@@ -28,7 +41,7 @@ body {
 
 .life-section {
     flex: 1;
-    padding: 0 2rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,21 +58,16 @@ body {
 }
 
 .real-life {
-    background-color: #1a1a1a;
-    color: white;
+    background-color: oklch(27.8% 0.033 256.848deg);
 }
 
 .furry-life {
     background-color: #1a2b55;
-    color: white;
 }
 
-.section-header {
-    display: none;
-}
-
+/* Content */
 .section-title {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 600;
     margin-bottom: 1rem;
     letter-spacing: -0.025em;
@@ -67,6 +75,7 @@ body {
 }
 
 .profile-container {
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -114,7 +123,11 @@ body {
     margin-bottom: 0.5rem;
 }
 
-
+/* Links */
+a.life-section {
+    text-decoration: none;
+    color: white;
+}
 
 /* Footer */
 .footer {
@@ -127,14 +140,7 @@ body {
     border-top: 1px solid #e9ecef;
 }
 
-a.life-section {
-    text-decoration: none;
-    color: white;
-}
-
-
-
-
+/* Responsive Design */
 @media (width <= 768px) {
     .desktop-layout {
         flex-direction: column;
@@ -160,5 +166,3 @@ a.life-section {
         font-size: 40px;
     }
 }
-
-
