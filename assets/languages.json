@@ -1,0 +1,26 @@
+{
+  "en": {
+    "title": "Welcome to photocat.blue",
+    "headerTitle": "Select which part of me",
+    "realLifeTitle": "Human",
+    "furryLifeTitle": "Furry",
+    "realLifeName": "CYTsai",
+    "furryLifeName": "健一 Kenichi"
+  },
+  "zh-TW": {
+    "title": "歡迎來到 photocat.blue",
+    "headerTitle": "選擇我的哪一面",
+    "realLifeTitle": "人類",
+    "furryLifeTitle": "獸控",
+    "realLifeName": "CYTsai",
+    "furryLifeName": "健一 Kenichi"
+  },
+  "zh-CN": {
+    "title": "欢迎来到 photocat.blue",
+    "headerTitle": "选择我的哪一面",
+    "realLifeTitle": "人类",
+    "furryLifeTitle": "福瑞",
+    "realLifeName": "CYTsai",
+    "furryLifeName": "健一 Kenichi"
+  }
+}

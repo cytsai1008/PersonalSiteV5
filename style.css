@@ -1,0 +1,168 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Chiron GoRound TC", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Header */
+.main-header {
+    text-align: center;
+    padding: 2rem;
+
+    /* we are in ai era, of course our favorite color is purple gradient (no i hate it, so fucking bright) */
+    background: linear-gradient(45deg, #4f46e5, #8b5cf6);
+    color: white;
+}
+
+/* Main Container */
+.main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Layout */
+.desktop-layout {
+    display: flex;
+    flex: 1;
+    min-height: 101vh;
+}
+
+.life-section {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: flex 0.5s ease;
+    border: none;
+    margin: 0;
+    border-radius: 0;
+}
+
+.life-section.expanded {
+    flex-grow: 2.5;
+}
+
+.real-life {
+    background-color: oklch(27.8% 0.033 256.848deg);
+}
+
+.furry-life {
+    background-color: #1a2b55;
+}
+
+/* Content */
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+}
+
+.profile-container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 10%);
+    border: 0 solid rgb(255 255 255 / 20%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    border-color: rgb(255 255 255 / 40%);
+}
+
+.profile-image .material-symbols-rounded {
+    font-size: 80px;
+    opacity: 0.7;
+}
+
+.name-section {
+    text-align: center;
+}
+
+.name-placeholder {
+    font-size: 2.5rem;
+    font-weight: 500;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+/* Links */
+a.life-section {
+    text-decoration: none;
+    color: white;
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Responsive Design */
+@media (width <= 768px) {
+    .desktop-layout {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .life-section {
+        min-height: 50vh;
+    }
+}
+
+@media (width <= 1024px) and (width >= 769px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-image .material-symbols-rounded {
+        font-size: 40px;
+    }
+}
