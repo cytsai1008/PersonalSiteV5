@@ -34,3 +34,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
           exclude_assets: '.github/,.idea/,node_modules/,devscript/,package.json,package-lock.json,.gitignore,.stylelintrc.json,eslint.config.js,GEMINI.md'
+          cname: photocat.blue
