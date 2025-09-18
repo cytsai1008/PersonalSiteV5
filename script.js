@@ -198,6 +198,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const activeIcon = themeDropdown.querySelector(`a[data-theme="${theme}"] .material-symbols-rounded`);
         if (activeIcon) {
             activeIcon.style.fontVariationSettings = "'FILL' 1";
+            if (animate) {
+                activeIcon.classList.add('selector-icon-animation');
+                setTimeout(() => {
+                    activeIcon.classList.remove('selector-icon-animation');
+                }, 500); // Animation duration is 500ms
+            }
         }
     };
 
