@@ -3,24 +3,30 @@
     "title": "Welcome to photocat.blue",
     "headerTitle": "Select which part of me",
     "realLifeTitle": "Human",
-    "furryLifeTitle": "Furry",
     "realLifeName": "CYTsai",
-    "furryLifeName": "健一 Kenichi"
+    "realLifeSubtitle": "Things about programming and career",
+    "furryLifeTitle": "Furry",
+    "furryLifeName": "健一 Kenichi",
+    "furryLifeSubtitle": "Things about furries and photographs"
   },
   "zh-TW": {
     "title": "歡迎來到 photocat.blue",
     "headerTitle": "選擇我的哪一面",
     "realLifeTitle": "人類",
-    "furryLifeTitle": "獸控",
     "realLifeName": "CYTsai",
-    "furryLifeName": "健一 Kenichi"
+    "realLifeSubtitle": "關於程式設計和職業生涯",
+    "furryLifeTitle": "獸控",
+    "furryLifeName": "健一 Kenichi",
+    "furryLifeSubtitle": "關於毛毛和攝影"
   },
   "zh-CN": {
     "title": "欢迎来到 photocat.blue",
     "headerTitle": "选择我的哪一面",
     "realLifeTitle": "人类",
-    "furryLifeTitle": "福瑞",
     "realLifeName": "CYTsai",
-    "furryLifeName": "健一 Kenichi"
+    "realLifeSubtitle": "关于程序设计和职业生涯",
+    "furryLifeTitle": "福瑞",
+    "furryLifeName": "健一 Kenichi",
+    "furryLifeSubtitle": "关于福瑞和摄影"
   }
 }

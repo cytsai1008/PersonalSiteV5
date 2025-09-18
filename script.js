@@ -95,38 +95,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const desktopLayout = document.querySelector('.desktop-layout');
     const footer = document.querySelector('.footer');
     const mainHeader = document.querySelector('.main-header');
-    let isMouseInFooter = false;
-    let isMouseInHeader = false;
+    let isMouseInRestrictedZone = false;
 
     // Only enable the hover effect on desktop devices.
     if (desktopLayout && window.matchMedia('(min-width: 769px)').matches) {
 
-        if (footer) {
-            footer.addEventListener('mouseenter', () => {
-                isMouseInFooter = true;
-                realLifeSection.classList.remove('expanded');
-                furryLifeSection.classList.remove('expanded');
-            });
-
-            footer.addEventListener('mouseleave', () => {
-                isMouseInFooter = false;
-            });
-        }
-
-        if (mainHeader) {
-            mainHeader.addEventListener('mouseenter', () => {
-                isMouseInHeader = true;
-                realLifeSection.classList.remove('expanded');
-                furryLifeSection.classList.remove('expanded');
-            });
-
-            mainHeader.addEventListener('mouseleave', () => {
-                isMouseInHeader = false;
-            });
-        }
+        [mainHeader, footer].forEach(element => {
+            if (element) {
+                element.addEventListener('mouseenter', () => {
+                    isMouseInRestrictedZone = true;
+                    realLifeSection.classList.remove('expanded');
+                    furryLifeSection.classList.remove('expanded');
+                });
+                element.addEventListener('mouseleave', () => {
+                    isMouseInRestrictedZone = false;
+                });
+            }
+        });
 
         document.addEventListener('mousemove', (e) => {
-            if (isMouseInFooter || isMouseInHeader) {
+            if (isMouseInRestrictedZone) {
                 return;
             }
             const windowWidth = window.innerWidth;
@@ -160,6 +148,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const themeIcon = document.getElementById('theme-icon');
     const themeDropdown = document.getElementById('theme-dropdown');
+    const themeSwitcher = document.querySelector('.theme-switcher');
+    const themeSwitcherButton = document.getElementById('theme-switcher-button');
+    const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
+
+    /**
+     * Animates an icon by adding a CSS class and removing it on animation end.
+     * @param {HTMLElement} icon - The icon element to animate.
+     * @param {string} animationClass - The CSS animation class to apply.
+     */
+    const animateIcon = (icon, animationClass) => {
+        if (icon) {
+            const listener = () => {
+                icon.classList.remove(animationClass);
+                icon.removeEventListener('animationend', listener);
+            };
+            icon.addEventListener('animationend', listener);
+            icon.classList.add(animationClass);
+        }
+    };
 
     /**
      * Applies the selected theme to the page.
@@ -181,11 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('theme', theme);
 
         if (animate) {
-            // Animate the theme icon
-            themeIcon.classList.add('theme-icon-animation');
-            setTimeout(() => {
-                themeIcon.classList.remove('theme-icon-animation');
-            }, 500); // Animation duration is 500ms
+            animateIcon(themeIcon, 'theme-icon-animation');
         }
 
         // Update icon fill for the active theme
@@ -199,10 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (activeIcon) {
             activeIcon.style.fontVariationSettings = "'FILL' 1";
             if (animate) {
-                activeIcon.classList.add('selector-icon-animation');
-                setTimeout(() => {
-                    activeIcon.classList.remove('selector-icon-animation');
-                }, 500); // Animation duration is 500ms
+                animateIcon(activeIcon, 'selector-icon-animation');
             }
         }
     };
@@ -221,10 +221,81 @@ document.addEventListener('DOMContentLoaded', function () {
         if (theme) {
             e.preventDefault();
             applyTheme(theme);
+            if (mobileMediaQuery.matches) {
+                themeSwitcher.classList.remove('show-dropdown');
+            }
+        }
+    });
+
+    if (themeSwitcherButton) {
+        themeSwitcherButton.addEventListener('click', () => {
+            if (mobileMediaQuery.matches) {
+                themeSwitcher.classList.toggle('show-dropdown');
+            }
+        });
+
+        const resetIconWeight = () => {
+            themeIcon.style.fontVariationSettings = "'FILL' 1";
+        };
+
+        const pressIcon = () => {
+            themeIcon.style.fontVariationSettings = "'FILL' 1, 'wght' 100";
+        }
+
+        ['mousedown', 'touchstart'].forEach(evt => themeSwitcherButton.addEventListener(evt, pressIcon));
+        ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(evt => themeSwitcherButton.addEventListener(evt, resetIconWeight));
+    }
+
+    // Click outside to close dropdown on mobile
+    document.addEventListener('click', (e) => {
+        if (mobileMediaQuery.matches && !themeSwitcher.contains(e.target)) {
+            themeSwitcher.classList.remove('show-dropdown');
         }
     });
 
     // Load the saved theme from local storage or default to 'system'.
     const savedTheme = localStorage.getItem('theme') || 'system';
     applyTheme(savedTheme, false);
+
+    // -------------------------------------------------------------------------
+    // Floating Theme Switcher on Mobile
+    // -------------------------------------------------------------------------
+    let lastScrollY = window.scrollY;
+    const scrollThreshold = 100; // Pixels to scroll before showing/hiding
+
+    const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+
+        if (mobileMediaQuery.matches) {
+            // Only apply on mobile
+            if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
+                // Scrolling down and past threshold
+                themeSwitcher.classList.add('visible');
+            } else if (currentScrollY < lastScrollY || currentScrollY <= scrollThreshold) {
+                // Scrolling up or at the top of the page
+                themeSwitcher.classList.remove('visible');
+                themeSwitcher.classList.remove('show-dropdown'); // Also close dropdown
+            }
+        } else {
+            // On desktop, ensure it's not floating and visible by default
+            themeSwitcher.classList.remove('visible');
+        }
+        lastScrollY = currentScrollY;
+    };
+
+    const handleResize = () => {
+        if (!mobileMediaQuery.matches) {
+            // If resized to desktop, ensure the switcher is not floating
+            themeSwitcher.classList.remove('visible');
+            themeSwitcher.classList.remove('show-dropdown'); // Also close dropdown
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+
+    // Initial check on load for mobile devices
+    if (mobileMediaQuery.matches) {
+        themeSwitcher.classList.remove('visible'); // Ensure it's hidden initially on mobile
+    }
 });
