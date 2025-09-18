@@ -249,11 +249,12 @@ a.life-section {
 
 .theme-dropdown a:hover {
     background-color: var(--dropdown-hover-bg);
-    border-radius: 5px;
 }
 
-.theme-switcher:hover .theme-dropdown {
-    display: block;
+@media (hover: hover) {
+    .theme-switcher:hover .theme-dropdown {
+        display: block;
+    }
 }
 
 /* Responsive Design */
@@ -266,13 +267,51 @@ a.life-section {
     .life-section {
         min-height: 50vh;
     }
+
+    .theme-switcher {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        left: auto;
+        transform: translateY(150%);
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        z-index: 1000;
+        opacity: 0.8;
+    }
+
+    .theme-switcher:hover {
+        opacity: 1;
+    }
+
+    .theme-switcher.visible {
+        transform: translateY(0);
+    }
+
+    .theme-button {
+        background-color: var(--dropdown-bg);
+        border: 1px solid var(--dropdown-border);
+        box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 12px;
+    }
+
+    .theme-button .theme-icon {
+        font-size: 28px;
+        color: var(--dropdown-text);
+    }
+
+    .theme-dropdown {
+        right: 0;
+        left: auto;
+    }
+
+    .theme-switcher.show-dropdown .theme-dropdown {
+        display: block;
+    }
 }
 
 @media (width <= 1024px) and (width >= 769px) {
-    .section-title {
-        font-size: 2rem;
-    }
-
     .profile-image {
         width: 100px;
         height: 100px;
