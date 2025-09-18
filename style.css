@@ -5,6 +5,64 @@
     box-sizing: border-box;
 }
 
+/*
+ * -----------------------------------------------------------------------------
+ * Theme Variables
+ * -----------------------------------------------------------------------------
+ * This section defines the color schemes for the light and dark themes using
+ * CSS custom properties (variables). This makes it easy to manage and update
+ * the themes.
+ */
+
+/*
+ * Light Theme (Default)
+ * The :root selector defines the default theme, which is the light theme.
+ * These variables are used throughout the stylesheet to ensure a consistent
+ * look and feel.
+ */
+:root {
+    --header-bg: linear-gradient(45deg, #6366f1, #a78bfa);
+    --header-text: white;
+    --real-life-bg: oklch(92.9% 0.013 255.508deg);
+    --furry-life-bg: oklch(88.2% 0.059 254.128deg);
+    --link-text: #1f2937;
+    --profile-image-bg: rgb(0 0 0 / 5%);
+    --profile-image-border: rgb(0 0 0 / 10%);
+    --profile-image-hover-border: rgb(0 0 0 / 20%);
+    --name-text: 0.7;
+    --footer-bg: #f8f9fa;
+    --footer-text: #6c757d;
+    --dropdown-bg: #fff;
+    --dropdown-border: #ccc;
+    --dropdown-text: #000;
+    --dropdown-hover-bg: #f0f0f0;
+}
+
+/*
+ * Dark Theme
+ * The html[data-theme="dark"] selector overrides the default light theme
+ * variables when the `data-theme` attribute on the <html> element is set to
+ * "dark". This is a more specific selector, which ensures that the dark theme
+ * is applied correctly.
+ */
+html[data-theme="dark"] {
+    --header-bg: linear-gradient(45deg, #4f46e5, #8b5cf6);
+    --header-text: white;
+    --real-life-bg: oklch(27.8% 0.033 256.848deg);
+    --furry-life-bg: #1a2b55;
+    --link-text: white;
+    --profile-image-bg: rgb(255 255 255 / 10%);
+    --profile-image-border: rgb(255 255 255 / 20%);
+    --profile-image-hover-border: rgb(255 255 255 / 40%);
+    --name-text: 0.8;
+    --footer-bg: oklch(21% 0.034 264.665deg);
+    --footer-text: #fff;
+    --dropdown-bg: oklch(21% 0.034 264.665deg);
+    --dropdown-border: #444;
+    --dropdown-text: #fff;
+    --dropdown-hover-bg: oklch(44.6% 0.03 256.802deg);
+}
+
 body {
     font-family: "Chiron GoRound TC", sans-serif;
     font-optical-sizing: auto;
@@ -21,8 +79,8 @@ body {
     padding: 2rem;
 
     /* we are in ai era, of course our favorite color is purple gradient (no i hate it, so fucking bright) */
-    background: linear-gradient(45deg, #4f46e5, #8b5cf6);
-    color: white;
+    background: var(--header-bg);
+    color: var(--header-text);
 }
 
 /* Main Container */
@@ -58,11 +116,11 @@ body {
 }
 
 .real-life {
-    background-color: oklch(27.8% 0.033 256.848deg);
+    background-color: var(--real-life-bg);
 }
 
 .furry-life {
-    background-color: #1a2b55;
+    background-color: var(--furry-life-bg);
 }
 
 /* Content */
@@ -86,8 +144,8 @@ body {
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    background: rgb(255 255 255 / 10%);
-    border: 0 solid rgb(255 255 255 / 20%);
+    background: var(--profile-image-bg);
+    border: 0 solid var(--profile-image-border);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -104,7 +162,7 @@ body {
 
 .profile-image:hover {
     transform: scale(1.05);
-    border-color: rgb(255 255 255 / 40%);
+    border-color: var(--profile-image-hover-border);
 }
 
 .profile-image .material-symbols-rounded {
@@ -116,17 +174,17 @@ body {
     text-align: center;
 }
 
-.name-placeholder {
+.name-text {
     font-size: 2.5rem;
     font-weight: 500;
-    opacity: 0.8;
+    opacity: var(--name-text);
     margin-bottom: 0.5rem;
 }
 
 /* Links */
 a.life-section {
     text-decoration: none;
-    color: white;
+    color: var(--link-text);
 }
 
 /* Footer */
@@ -135,9 +193,58 @@ a.life-section {
     justify-content: center;
     align-items: center;
     padding: 2rem 0;
-    background-color: #f8f9fa;
-    color: #6c757d;
-    border-top: 1px solid #e9ecef;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    position: relative;
+}
+
+.theme-switcher {
+    position: absolute;
+    left: 1rem;
+}
+
+.theme-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--footer-text);
+    display: flex;
+    align-items: center;
+}
+
+.theme-icon {
+    font-size: 24px;
+}
+
+.theme-dropdown {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background-color: var(--dropdown-bg);
+    border: 1px solid var(--dropdown-border);
+    border-radius: 8px;
+    padding: 0.5rem;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+}
+
+.theme-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: var(--dropdown-text);
+    border-radius: 5px;
+}
+
+.theme-dropdown a:hover {
+    background-color: var(--dropdown-hover-bg);
+    border-radius: 5px;
+}
+
+.theme-switcher:hover .theme-dropdown {
+    display: block;
 }
 
 /* Responsive Design */
