@@ -293,9 +293,11 @@ a.life-section {
         transform: rotate(0deg);
         font-variation-settings: 'FILL' 1, 'wght' 200;
     }
+
     50% {
         font-variation-settings: 'FILL' 1, 'wght' 900;
     }
+
     100% {
         transform: rotate(360deg);
         font-variation-settings: 'FILL' 1, 'wght' 200;
@@ -311,9 +313,11 @@ a.life-section {
     0% {
         font-variation-settings: 'FILL' 1, 'wght' 400;
     }
+
     50% {
         font-variation-settings: 'FILL' 1, 'wght' 100;
     }
+
     100% {
         font-variation-settings: 'FILL' 1, 'wght' 400;
     }
