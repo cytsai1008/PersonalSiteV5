@@ -210,6 +210,15 @@ a.life-section {
     color: var(--footer-text);
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.theme-button:hover {
+    background-color: var(--profile-image-bg);
 }
 
 .theme-icon {
@@ -271,5 +280,24 @@ a.life-section {
 
     .profile-image .material-symbols-rounded {
         font-size: 40px;
+    }
+}
+
+/* Theme Icon Animation */
+.theme-icon-animation {
+    animation: weight-pulse 0.5s ease-in-out;
+}
+
+@keyframes weight-pulse {
+    0% {
+        transform: rotate(0deg);
+        font-variation-settings: 'FILL' 1, 'wght' 200;
+    }
+    50% {
+        font-variation-settings: 'FILL' 1, 'wght' 900;
+    }
+    100% {
+        transform: rotate(360deg);
+        font-variation-settings: 'FILL' 1, 'wght' 200;
     }
 }

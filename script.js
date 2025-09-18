@@ -164,8 +164,9 @@ document.addEventListener('DOMContentLoaded', function () {
     /**
      * Applies the selected theme to the page.
      * @param {string} theme - The theme to apply ('light', 'dark', or 'system').
+     * @param {boolean} [animate=true] - Whether to animate the theme icon.
      */
-    const applyTheme = (theme) => {
+    const applyTheme = (theme, animate = true) => {
         if (theme === 'system') {
             // If the theme is 'system', check the user's OS preference.
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -178,6 +179,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         // Save the selected theme to local storage.
         localStorage.setItem('theme', theme);
+
+        if (animate) {
+            // Animate the theme icon
+            themeIcon.classList.add('theme-icon-animation');
+            setTimeout(() => {
+                themeIcon.classList.remove('theme-icon-animation');
+            }, 500); // Animation duration is 500ms
+        }
+
+        // Update icon fill for the active theme
+        themeIcon.style.fontVariationSettings = "'FILL' 1";
+
+        themeDropdown.querySelectorAll('a .material-symbols-rounded').forEach(icon => {
+            icon.style.fontVariationSettings = "'FILL' 0";
+        });
+
+        const activeIcon = themeDropdown.querySelector(`a[data-theme="${theme}"] .material-symbols-rounded`);
+        if (activeIcon) {
+            activeIcon.style.fontVariationSettings = "'FILL' 1";
+        }
     };
 
     // Listen for changes in the system's color scheme.
@@ -199,5 +220,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Load the saved theme from local storage or default to 'system'.
     const savedTheme = localStorage.getItem('theme') || 'system';
-    applyTheme(savedTheme);
+    applyTheme(savedTheme, false);
 });
