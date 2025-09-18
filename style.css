@@ -23,8 +23,8 @@
 :root {
     --header-bg: linear-gradient(45deg, #6366f1, #a78bfa);
     --header-text: white;
-    --real-life-bg: oklch(92.9% 0.013 255.508);
-    --furry-life-bg: oklch(88.2% 0.059 254.128);
+    --real-life-bg: oklch(92.9% 0.013 255.508deg);
+    --furry-life-bg: oklch(88.2% 0.059 254.128deg);
     --link-text: #1f2937;
     --profile-image-bg: rgb(0 0 0 / 5%);
     --profile-image-border: rgb(0 0 0 / 10%);
@@ -55,12 +55,12 @@ html[data-theme="dark"] {
     --profile-image-border: rgb(255 255 255 / 20%);
     --profile-image-hover-border: rgb(255 255 255 / 40%);
     --name-text: 0.8;
-    --footer-bg: oklch(21% 0.034 264.665);
+    --footer-bg: oklch(21% 0.034 264.665deg);
     --footer-text: #fff;
-    --dropdown-bg: oklch(21% 0.034 264.665);
+    --dropdown-bg: oklch(21% 0.034 264.665deg);
     --dropdown-border: #444;
     --dropdown-text: #fff;
-    --dropdown-hover-bg: oklch(44.6% 0.03 256.802);
+    --dropdown-hover-bg: oklch(44.6% 0.03 256.802deg);
 }
 
 body {
@@ -240,6 +240,7 @@ a.life-section {
 
 .theme-dropdown a:hover {
     background-color: var(--dropdown-hover-bg);
+    border-radius: 5px;
 }
 
 .theme-switcher:hover .theme-dropdown {
