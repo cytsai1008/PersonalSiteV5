@@ -2,26 +2,26 @@
  * -----------------------------------------------------------------------------
  * Personal Website Script
  * -----------------------------------------------------------------------------
- * This script handles the dynamic functionality of the personal website, 
+ * This script handles the dynamic functionality of the personal website,
  * including:
  * - Language localization based on the browser's language.
  * - A theme switcher with light, dark, and system modes.
  * - A hover effect for the desktop layout that expands the sections.
  * - Click animations for profile images.
  */
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     /**
      * -------------------------------------------------------------------------
      * Localization
      * -------------------------------------------------------------------------
-     * This section handles the language localization of the website. It 
-     * detects the user's browser language and fetches the appropriate 
+     * This section handles the language localization of the website. It
+     * detects the user's browser language and fetches the appropriate
      * translations from a JSON file.
      */
 
     /**
-     * Sets the language of the page by updating the content of elements with 
+     * Sets the language of the page by updating the content of elements with
      * the `data-translate` attribute.
      * @param {string} language - The language code (e.g., 'en', 'zh-TW').
      * @param {object} translations - An object containing the translations.
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     /**
-     * Fetches the language translations from the `languages.json` file and 
+     * Fetches the language translations from the `languages.json` file and
      * sets the page language.
      */
     const fetchTranslations = async () => {
@@ -68,13 +68,13 @@ document.addEventListener('DOMContentLoaded', function() {
      * -------------------------------------------------------------------------
      * UI Animations
      * -------------------------------------------------------------------------
-     * This section handles the UI animations, such as the click animation 
+     * This section handles the UI animations, such as the click animation
      * for the profile images.
      */
 
     const profileImages = document.querySelectorAll('.profile-image');
     profileImages.forEach(img => {
-        img.addEventListener('click', function() {
+        img.addEventListener('click', function () {
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 this.style.transform = '';
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * -------------------------------------------------------------------------
      * Desktop Hover Effect
      * -------------------------------------------------------------------------
-     * This section handles the hover effect on desktop devices, which expands 
+     * This section handles the hover effect on desktop devices, which expands
      * the sections when the user hovers over them.
      */
 
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * -------------------------------------------------------------------------
      * Theme Switcher
      * -------------------------------------------------------------------------
-     * This section handles the theme switching functionality. It allows the 
+     * This section handles the theme switching functionality. It allows the
      * user to switch between light, dark, and system themes.
      */
 
@@ -179,6 +179,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Save the selected theme to local storage.
         localStorage.setItem('theme', theme);
     };
+
+    // Listen for changes in the system's color scheme.
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        const savedTheme = localStorage.getItem('theme') || 'system';
+        if (savedTheme === 'system') {
+            applyTheme('system');
+        }
+    });
 
     // Add a click event listener to the theme dropdown.
     themeDropdown.addEventListener('click', (e) => {
