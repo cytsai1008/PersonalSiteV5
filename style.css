@@ -238,6 +238,7 @@ a.life-section {
     position: absolute;
     bottom: 100%;
     left: 0;
+    margin-bottom: 0.5rem;
     background-color: var(--dropdown-bg);
     border: 1px solid var(--dropdown-border);
     border-radius: 8px;
