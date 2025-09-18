@@ -301,3 +301,20 @@ a.life-section {
         font-variation-settings: 'FILL' 1, 'wght' 200;
     }
 }
+
+/* Selector Icon Animation */
+.selector-icon-animation {
+    animation: selector-weight-pulse 0.5s ease-in-out;
+}
+
+@keyframes selector-weight-pulse {
+    0% {
+        font-variation-settings: 'FILL' 1, 'wght' 400;
+    }
+    50% {
+        font-variation-settings: 'FILL' 1, 'wght' 100;
+    }
+    100% {
+        font-variation-settings: 'FILL' 1, 'wght' 400;
+    }
+}
