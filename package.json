@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "npx stylelint style.css && npx htmlhint index.html && npx eslint ."
   },
   "private": true,
   "devDependencies": {

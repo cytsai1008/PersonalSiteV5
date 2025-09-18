@@ -113,12 +113,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mouseX < windowWidth / 3) {
                 realLifeSection.classList.add('expanded');
                 furryLifeSection.classList.remove('expanded');
-            } 
+            }
             // Expand the right section when the mouse is in the right third of the screen.
             else if (mouseX > windowWidth * 2 / 3) {
                 furryLifeSection.classList.add('expanded');
                 realLifeSection.classList.remove('expanded');
-            } 
+            }
             // Reset to the default state when the mouse is in the middle third.
             else {
                 realLifeSection.classList.remove('expanded');
@@ -132,4 +132,32 @@ document.addEventListener('DOMContentLoaded', function() {
             furryLifeSection.classList.remove('expanded');
         });
     }
+
+    // --- Theme Switcher ---
+    const themeSwitcherButton = document.getElementById('theme-switcher-button');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeDropdown = document.getElementById('theme-dropdown');
+
+    const applyTheme = (theme) => {
+        if (theme === 'system') {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.dataset.theme = prefersDark ? 'dark' : 'light';
+            themeIcon.textContent = 'brightness_auto';
+        } else {
+            document.documentElement.dataset.theme = theme;
+            themeIcon.textContent = theme === 'dark' ? 'dark_mode' : 'light_mode';
+        }
+        localStorage.setItem('theme', theme);
+    };
+
+    themeDropdown.addEventListener('click', (e) => {
+        const theme = e.target.closest('a')?.dataset.theme;
+        if (theme) {
+            e.preventDefault();
+            applyTheme(theme);
+        }
+    });
+
+    const savedTheme = localStorage.getItem('theme') || 'system';
+    applyTheme(savedTheme);
 });
