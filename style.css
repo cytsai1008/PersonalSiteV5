@@ -5,25 +5,46 @@
     box-sizing: border-box;
 }
 
+/*
+ * -----------------------------------------------------------------------------
+ * Theme Variables
+ * -----------------------------------------------------------------------------
+ * This section defines the color schemes for the light and dark themes using
+ * CSS custom properties (variables). This makes it easy to manage and update
+ * the themes.
+ */
+
+/*
+ * Light Theme (Default)
+ * The :root selector defines the default theme, which is the light theme.
+ * These variables are used throughout the stylesheet to ensure a consistent
+ * look and feel.
+ */
 :root {
     --header-bg: linear-gradient(45deg, #6366f1, #a78bfa);
     --header-text: white;
-    --real-life-bg: #e0e7ff;
-    --furry-life-bg: #dbeafe;
+    --real-life-bg: oklch(92.9% 0.013 255.508);
+    --furry-life-bg: oklch(88.2% 0.059 254.128);
     --link-text: #1f2937;
     --profile-image-bg: rgb(0 0 0 / 5%);
     --profile-image-border: rgb(0 0 0 / 10%);
     --profile-image-hover-border: rgb(0 0 0 / 20%);
-    --name-placeholder-text: 0.7;
+    --name-text: 0.7;
     --footer-bg: #f8f9fa;
     --footer-text: #6c757d;
-    --footer-border: #e9ecef;
     --dropdown-bg: #fff;
     --dropdown-border: #ccc;
     --dropdown-text: #000;
     --dropdown-hover-bg: #f0f0f0;
 }
 
+/*
+ * Dark Theme
+ * The html[data-theme="dark"] selector overrides the default light theme
+ * variables when the `data-theme` attribute on the <html> element is set to
+ * "dark". This is a more specific selector, which ensures that the dark theme
+ * is applied correctly.
+ */
 html[data-theme="dark"] {
     --header-bg: linear-gradient(45deg, #4f46e5, #8b5cf6);
     --header-text: white;
@@ -33,14 +54,13 @@ html[data-theme="dark"] {
     --profile-image-bg: rgb(255 255 255 / 10%);
     --profile-image-border: rgb(255 255 255 / 20%);
     --profile-image-hover-border: rgb(255 255 255 / 40%);
-    --name-placeholder-text: 0.8;
-    --footer-bg: #1a2b55;
+    --name-text: 0.8;
+    --footer-bg: oklch(21% 0.034 264.665);
     --footer-text: #fff;
-    --footer-border: #333;
-    --dropdown-bg: #2a3b65;
+    --dropdown-bg: oklch(21% 0.034 264.665);
     --dropdown-border: #444;
     --dropdown-text: #fff;
-    --dropdown-hover-bg: #3a4b75;
+    --dropdown-hover-bg: oklch(44.6% 0.03 256.802);
 }
 
 body {
@@ -154,10 +174,10 @@ body {
     text-align: center;
 }
 
-.name-placeholder {
+.name-text {
     font-size: 2.5rem;
     font-weight: 500;
-    opacity: var(--name-placeholder-text);
+    opacity: var(--name-text);
     margin-bottom: 0.5rem;
 }
 
@@ -175,7 +195,6 @@ a.life-section {
     padding: 2rem 0;
     background-color: var(--footer-bg);
     color: var(--footer-text);
-    border-top: 1px solid var(--footer-border);
     position: relative;
 }
 
@@ -216,6 +235,7 @@ a.life-section {
     padding: 0.5rem;
     text-decoration: none;
     color: var(--dropdown-text);
+    border-radius: 5px;
 }
 
 .theme-dropdown a:hover {
