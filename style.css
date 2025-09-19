@@ -206,9 +206,33 @@ a.life-section {
     position: relative;
 }
 
+.footer p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.cat-emoji {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin: 0 0.25em;
+    vertical-align: middle;
+}
+
+.cat-emoji img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: opacity 0.1s ease-in-out;
+}
+
 .theme-switcher {
     position: absolute;
     left: 1rem;
+    padding-top: 0.5rem;
 }
 
 .theme-button {
@@ -238,7 +262,6 @@ a.life-section {
     position: absolute;
     bottom: 100%;
     left: 0;
-    margin-bottom: 0.5rem;
     background-color: var(--dropdown-bg);
     border: 1px solid var(--dropdown-border);
     border-radius: 8px;
@@ -246,17 +269,22 @@ a.life-section {
     box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
 }
 
-.theme-dropdown a {
+.theme-dropdown button {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem;
-    text-decoration: none;
     color: var(--dropdown-text);
     border-radius: 5px;
+    background: none;
+    border: none;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
 }
 
-.theme-dropdown a:hover {
+.theme-dropdown button:hover {
     background-color: var(--dropdown-hover-bg);
 }
 
@@ -370,3 +398,4 @@ a.life-section {
         font-variation-settings: 'FILL' 1, 'wght' 400;
     }
 }
+

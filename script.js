@@ -194,11 +194,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // Update icon fill for the active theme
         themeIcon.style.fontVariationSettings = "'FILL' 1";
 
-        themeDropdown.querySelectorAll('a .material-symbols-rounded').forEach(icon => {
+        themeDropdown.querySelectorAll('button .material-symbols-rounded').forEach(icon => {
             icon.style.fontVariationSettings = "'FILL' 0";
         });
 
-        const activeIcon = themeDropdown.querySelector(`a[data-theme="${theme}"] .material-symbols-rounded`);
+        const activeIcon = themeDropdown.querySelector(`button[data-theme="${theme}"] .material-symbols-rounded`);
         if (activeIcon) {
             activeIcon.style.fontVariationSettings = "'FILL' 1";
             if (animate) {
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add a click event listener to the theme dropdown.
     themeDropdown.addEventListener('click', (e) => {
-        const theme = e.target.closest('a')?.dataset.theme;
+        const theme = e.target.closest('button')?.dataset.theme;
         if (theme) {
             e.preventDefault();
             applyTheme(theme);
