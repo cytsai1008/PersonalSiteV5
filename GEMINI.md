@@ -20,6 +20,7 @@ To run the linters, you can use the following commands:
 *   `npx eslint .`
 *   `npx htmlhint index.html`
 *   `npx stylelint style.css`
+*   `npm run lint`
 
 ## Development Conventions
 
