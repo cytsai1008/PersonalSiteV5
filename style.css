@@ -348,7 +348,7 @@ a.life-section {
     }
 }
 
-@media (width <= 1024px) and (width >= 769px) {
+@media (width <= 768px) and (width >= 769px) {
     .profile-image {
         width: 100px;
         height: 100px;
@@ -398,4 +398,3 @@ a.life-section {
         font-variation-settings: 'FILL' 1, 'wght' 400;
     }
 }
-
