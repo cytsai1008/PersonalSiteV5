@@ -221,7 +221,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (theme) {
             e.preventDefault();
             applyTheme(theme);
-            themeSwitcher.classList.remove('show-dropdown');
+            setTimeout(() => {
+                themeSwitcher.classList.remove('show-dropdown');
+            }, 550);
         }
     });
 
