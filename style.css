@@ -269,6 +269,10 @@ a.life-section {
     box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
 }
 
+.theme-switcher.show-dropdown .theme-dropdown {
+    display: block;
+}
+
 .theme-dropdown button {
     display: flex;
     align-items: center;
@@ -286,12 +290,6 @@ a.life-section {
 
 .theme-dropdown button:hover {
     background-color: var(--dropdown-hover-bg);
-}
-
-@media (hover: hover) {
-    .theme-switcher:hover .theme-dropdown {
-        display: block;
-    }
 }
 
 /* Responsive Design */
@@ -341,10 +339,6 @@ a.life-section {
     .theme-dropdown {
         right: 0;
         left: auto;
-    }
-
-    .theme-switcher.show-dropdown .theme-dropdown {
-        display: block;
     }
 }
 

@@ -221,17 +221,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (theme) {
             e.preventDefault();
             applyTheme(theme);
-            if (mobileMediaQuery.matches) {
-                themeSwitcher.classList.remove('show-dropdown');
-            }
+            themeSwitcher.classList.remove('show-dropdown');
         }
     });
 
     if (themeSwitcherButton) {
         themeSwitcherButton.addEventListener('click', () => {
-            if (mobileMediaQuery.matches) {
-                themeSwitcher.classList.toggle('show-dropdown');
-            }
+            themeSwitcher.classList.toggle('show-dropdown');
         });
 
         const resetIconWeight = () => {
@@ -248,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Click outside to close dropdown on mobile
     document.addEventListener('click', (e) => {
-        if (mobileMediaQuery.matches && !themeSwitcher.contains(e.target)) {
+        if (!themeSwitcher.contains(e.target)) {
             themeSwitcher.classList.remove('show-dropdown');
         }
     });
