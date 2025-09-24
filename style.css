@@ -144,6 +144,14 @@ body {
     min-width: 44px; /* Minimum width for hit target */
 }
 
+/* AGENTS.md: Add a specific, visible focus ring for the life sections.
+   This ensures the outline is visible even when the element is at the edge of the viewport. */
+.life-section:focus-visible {
+    outline: 3px solid var(--focus-ring-color);
+    outline-offset: -5px; /* Pull the outline inside the element */
+    border-radius: 0; /* Ensure the outline is rectangular like the section */
+}
+
 .life-section.expanded {
     flex-grow: 2.5;
 }
