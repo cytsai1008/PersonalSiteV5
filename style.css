@@ -5,6 +5,12 @@
     box-sizing: border-box;
 }
 
+/* AGENTS.md: Ensure visible focus rings for all interactive elements. */
+*:focus-visible {
+    outline: 2px solid var(--focus-ring-color, #6366f1); /* Default focus ring color */
+    outline-offset: 2px;
+}
+
 /*
  * -----------------------------------------------------------------------------
  * Theme Variables
@@ -37,6 +43,7 @@
     --dropdown-border: #ccc;
     --dropdown-text: #000;
     --dropdown-hover-bg: #f0f0f0;
+    --focus-ring-color: #6366f1;
 }
 
 /*
@@ -63,6 +70,7 @@ html[data-theme="dark"] {
     --dropdown-border: #444;
     --dropdown-text: #fff;
     --dropdown-hover-bg: oklch(44.6% 0.03 256.802deg);
+    --focus-ring-color: #8b5cf6;
 }
 
 body {
@@ -74,6 +82,26 @@ body {
     flex-direction: column;
 }
 
+/* AGENTS.md: Style for the skip link */
+.skip-link {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: var(--header-bg);
+    color: var(--header-text);
+    text-align: center;
+    z-index: 1001;
+    text-decoration: underline;
+    font-weight: 600;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
 
 /* Header */
 .main-header {
@@ -111,6 +139,17 @@ body {
     border: none;
     margin: 0;
     border-radius: 0;
+    /* AGENTS.md: Ensure hit targets are at least 24px (44px on mobile). */
+    min-height: 44px; /* Minimum height for hit target */
+    min-width: 44px; /* Minimum width for hit target */
+}
+
+/* AGENTS.md: Add a specific, visible focus ring for the life sections.
+   This ensures the outline is visible even when the element is at the edge of the viewport. */
+.life-section:focus-visible {
+    outline: 3px solid var(--focus-ring-color);
+    outline-offset: -5px; /* Pull the outline inside the element */
+    border-radius: 0; /* Ensure the outline is rectangular like the section */
 }
 
 .life-section.expanded {
@@ -153,6 +192,9 @@ body {
     justify-content: center;
     transition: all 0.3s ease;
     cursor: pointer;
+    /* AGENTS.md: Ensure hit targets are at least 24px (44px on mobile). */
+    min-height: 44px; /* Minimum height for hit target */
+    min-width: 44px; /* Minimum width for hit target */
 }
 
 .profile-image img {
@@ -247,6 +289,11 @@ a.life-section {
     height: 2.5rem;
     border-radius: 8px;
     transition: background-color 0.2s ease;
+    /* AGENTS.md: Ensure hit targets are at least 24px (44px on mobile). */
+    min-height: 44px; /* Minimum height for hit target */
+    min-width: 44px; /* Minimum width for hit target */
+    /* AGENTS.md: Use touch-action: manipulation to prevent double-tap zoom. */
+    touch-action: manipulation;
 }
 
 .theme-button:hover {
@@ -267,6 +314,8 @@ a.life-section {
     border-radius: 8px;
     padding: 0.5rem;
     box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+    /* AGENTS.md: Use overscroll-behavior: contain to prevent body scroll. */
+    overscroll-behavior: contain;
 }
 
 .theme-switcher.show-dropdown .theme-dropdown {
@@ -286,6 +335,11 @@ a.life-section {
     text-align: left;
     cursor: pointer;
     width: 100%;
+    /* AGENTS.md: Ensure hit targets are at least 24px (44px on mobile). */
+    min-height: 44px; /* Minimum height for hit target */
+    min-width: 44px; /* Minimum width for hit target */
+    /* AGENTS.md: Use touch-action: manipulation to prevent double-tap zoom. */
+    touch-action: manipulation;
 }
 
 .theme-dropdown button:hover {
@@ -390,5 +444,15 @@ a.life-section {
 
     100% {
         font-variation-settings: 'FILL' 1, 'wght' 400;
+    }
+}
+
+/* AGENTS.md: Honor prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }

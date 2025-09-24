@@ -152,19 +152,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const themeSwitcherButton = document.getElementById('theme-switcher-button');
     const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
 
+    // AGENTS.md: Store the last focused element before opening the dropdown
+    let lastFocusedElement = null;
+
     /**
      * Animates an icon by adding a CSS class and removing it on animation end.
      * @param {HTMLElement} icon - The icon element to animate.
      * @param {string} animationClass - The CSS animation class to apply.
      */
     const animateIcon = (icon, animationClass) => {
-        if (icon) {
-            const listener = () => {
-                icon.classList.remove(animationClass);
-                icon.removeEventListener('animationend', listener);
-            };
-            icon.addEventListener('animationend', listener);
-            icon.classList.add(animationClass);
+        // AGENTS.md: Only animate if prefers-reduced-motion is not active
+        if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+            if (icon) {
+                const listener = () => {
+                    icon.classList.remove(animationClass);
+                    icon.removeEventListener('animationend', listener);
+                };
+                icon.addEventListener('animationend', listener);
+                icon.classList.add(animationClass);
+            }
         }
     };
 
@@ -223,13 +229,56 @@ document.addEventListener('DOMContentLoaded', function () {
             applyTheme(theme);
             setTimeout(() => {
                 themeSwitcher.classList.remove('show-dropdown');
+                // AGENTS.md: Return focus to the trigger button after closing the dropdown
+                if (lastFocusedElement) {
+                    lastFocusedElement.focus();
+                }
             }, 550);
         }
     });
 
     if (themeSwitcherButton) {
         themeSwitcherButton.addEventListener('click', () => {
-            themeSwitcher.classList.toggle('show-dropdown');
+            const isDropdownVisible = themeSwitcher.classList.contains('show-dropdown');
+            if (!isDropdownVisible) {
+                // AGENTS.md: Trap focus inside the dropdown when it opens
+                lastFocusedElement = document.activeElement;
+                themeSwitcher.classList.add('show-dropdown');
+                // Focus the first focusable element in the dropdown
+                themeDropdown.querySelector('button')?.focus();
+            } else {
+                themeSwitcher.classList.remove('show-dropdown');
+                // AGENTS.md: Return focus to the trigger button after closing the dropdown
+                if (lastFocusedElement) {
+                    lastFocusedElement.focus();
+                }
+            }
+        });
+
+        // AGENTS.md: Handle keyboard navigation for the dropdown
+        themeDropdown.addEventListener('keydown', (e) => {
+            const focusableElements = Array.from(themeDropdown.querySelectorAll('button'));
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.key === 'Tab') {
+                if (e.shiftKey) { // Shift + Tab
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else { // Tab
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            } else if (e.key === 'Escape') {
+                themeSwitcher.classList.remove('show-dropdown');
+                if (lastFocusedElement) {
+                    lastFocusedElement.focus();
+                }
+            }
         });
 
         const resetIconWeight = () => {
@@ -248,6 +297,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', (e) => {
         if (!themeSwitcher.contains(e.target)) {
             themeSwitcher.classList.remove('show-dropdown');
+            // AGENTS.md: Return focus to the trigger button after closing the dropdown
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
         }
     });
 
@@ -273,6 +326,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Scrolling up or at the top of the page
                 themeSwitcher.classList.remove('visible');
                 themeSwitcher.classList.remove('show-dropdown'); // Also close dropdown
+                // AGENTS.md: Return focus to the trigger button after closing the dropdown
+                if (lastFocusedElement) {
+                    lastFocusedElement.focus();
+                }
             }
         } else {
             // On desktop, ensure it's not floating and visible by default
@@ -286,6 +343,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // If resized to desktop, ensure the switcher is not floating
             themeSwitcher.classList.remove('visible');
             themeSwitcher.classList.remove('show-dropdown'); // Also close dropdown
+            // AGENTS.md: Return focus to the trigger button after closing the dropdown
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
         }
     };
 
