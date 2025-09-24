@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- AGENTS.md: Respect safe areas and improve mobile experience. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title data-translate="title">Welcome to photocat.blue</title>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <!-- AGENTS.md: Preload above-the-fold images to improve performance. -->
+  <link rel="preload" href="assets/img/furry_avatar.png" as="image">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,18 +52,25 @@
 </head>
 
 <body>
+<!-- AGENTS.md: Add a "Skip to content" link for accessibility.
+     Remember to style the .skip-link class in style.css to be visually hidden until focused. -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <header class="main-header">
   <h1 data-translate="headerTitle">Select which part of me</h1>
 </header>
+<!-- AGENTS.md: Added id for the skip link target. -->
 <div class="main-container">
   <div class="desktop-layout">
-    <a href="https://cytsai.photocat.blue" class="life-section real-life">
+    <a href="https://cytsai.photocat.blue" class="life-section real-life" id="main-content">
       <div class="section-header">
-        <h1 class="section-title" data-translate="realLifeTitle">Human</h1>
+        <!-- AGENTS.md: Use hierarchical headings for accessibility. Changed from h1 to h2. -->
+        <h2 class="section-title" data-translate="realLifeTitle">Human</h2>
       </div>
       <div class="profile-container">
         <div class="profile-image">
-          <span class="material-symbols-rounded">person</span>
+          <!-- AGENTS.md: Hide decorative icons from screen readers. -->
+          <span class="material-symbols-rounded" aria-hidden="true">person</span>
         </div>
         <div class="name-section">
           <div class="name-text" data-translate="realLifeName">CYTsai</div>
@@ -70,11 +81,13 @@
 
     <a href="https://kenichi.photocat.blue" class="life-section furry-life">
       <div class="section-header">
-        <h1 class="section-title" data-translate="furryLifeTitle">Furry</h1>
+        <!-- AGENTS.md: Use hierarchical headings for accessibility. Changed from h1 to h2. -->
+        <h2 class="section-title" data-translate="furryLifeTitle">Furry</h2>
       </div>
       <div class="profile-container">
         <div class="profile-image">
-          <img src="assets/img/furry_avatar.png" alt="Furry Avatar">
+          <!-- AGENTS.md: Add width and height attributes to prevent layout shift (CLS). -->
+          <img src="assets/img/furry_avatar.png" alt="Furry Avatar" width="180" height="180">
         </div>
         <div class="name-section">
           <div class="name-text" data-translate="furryLifeName">健一 Kenichi</div>
@@ -91,19 +104,23 @@
 <footer class="footer">
   <div class="theme-switcher">
     <button id="theme-switcher-button" class="theme-button" aria-label="Theme switcher">
-      <span class="material-symbols-rounded theme-icon" id="theme-icon"></span>
+      <!-- AGENTS.md: Hide decorative icons from screen readers. -->
+      <span class="material-symbols-rounded theme-icon" id="theme-icon" aria-hidden="true"></span>
     </button>
     <div id="theme-dropdown" class="theme-dropdown">
       <button data-theme="light">
-        <span class="material-symbols-rounded">light_mode</span>
+        <!-- AGENTS.md: Hide decorative icons from screen readers. -->
+        <span class="material-symbols-rounded" aria-hidden="true">light_mode</span>
         <span data-translate="lightMode">Light</span>
       </button>
       <button data-theme="dark">
-        <span class="material-symbols-rounded">dark_mode</span>
+        <!-- AGENTS.md: Hide decorative icons from screen readers. -->
+        <span class="material-symbols-rounded" aria-hidden="true">dark_mode</span>
         <span data-translate="darkMode">Dark</span>
       </button>
       <button data-theme="system">
-        <span class="material-symbols-rounded">brightness_auto</span>
+        <!-- AGENTS.md: Hide decorative icons from screen readers. -->
+        <span class="material-symbols-rounded" aria-hidden="true">brightness_auto</span>
         <span data-translate="systemMode">System</span>
       </button>
     </div>
@@ -116,6 +133,7 @@
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
 
