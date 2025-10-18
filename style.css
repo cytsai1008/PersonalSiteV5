@@ -80,6 +80,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    text-autospace: normal;
 }
 
 /* AGENTS.md: Style for the skip link */
