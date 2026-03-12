@@ -5,15 +5,19 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "lint": "npx stylelint style.css && npx htmlhint index.html && npx eslint ."
+    "lint": "npx stylelint style.css && npx htmlhint index.html && npx eslint .",
+    "build": "node -e \"const fs=require('fs');fs.mkdirSync('dist/assets',{recursive:true});\" && node -e \"const fs=require('fs'),path=require('path');function cp(s,d){if(fs.statSync(s).isDirectory()){fs.mkdirSync(d,{recursive:true});for(const f of fs.readdirSync(s))cp(path.join(s,f),path.join(d,f));}else fs.copyFileSync(s,d);}cp('assets','dist/assets');fs.copyFileSync('robots.txt','dist/robots.txt');\" && node -e \"const fs=require('fs');fs.writeFileSync('dist/assets/languages.json',JSON.stringify(JSON.parse(fs.readFileSync('assets/languages.json','utf8'))))\" && terser script.js -o dist/script.js --compress --mangle && cleancss -o dist/style.css style.css && html-minifier-terser --collapse-whitespace --remove-comments --remove-optional-tags --minify-css true --minify-js true index.html -o dist/index.html && html-minifier-terser --collapse-whitespace --remove-comments --remove-optional-tags --minify-css true --minify-js true 404.html -o dist/404.html"
   },
   "private": true,
   "devDependencies": {
+    "clean-css-cli": "^5.6.3",
     "eslint": "^9.35.0",
+    "html-minifier-terser": "^7.2.0",
     "htmlhint": "^1.7.1",
     "http-server": "^14.1.1",
     "puppeteer": "^24.21.0",
     "stylelint": "^16.24.0",
-    "stylelint-config-standard": "^39.0.0"
+    "stylelint-config-standard": "^39.0.0",
+    "terser": "^5.46.0"
   }
 }

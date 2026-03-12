@@ -347,6 +347,54 @@ a.life-section {
     background-color: var(--dropdown-hover-bg);
 }
 
+/* Error Page */
+.error-page {
+    align-items: center;
+    justify-content: center;
+    padding:
+        max(3rem, env(safe-area-inset-top))
+        max(2rem, env(safe-area-inset-right))
+        max(3rem, env(safe-area-inset-bottom))
+        max(2rem, env(safe-area-inset-left));
+    text-align: center;
+    background-color: var(--real-life-bg);
+    color: var(--link-text);
+}
+
+.error-page .profile-container {
+    margin-top: 0;
+}
+
+.error-page-code {
+    margin-bottom: 0.5rem;
+    font-size: clamp(5rem, 20vw, 9rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    background: var(--header-bg);
+    background-clip: text;
+    color: transparent;
+}
+
+.error-page-home-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.75rem;
+    border-radius: 999px;
+    background: var(--header-bg);
+    color: var(--header-text);
+    font-weight: 600;
+    text-decoration: none;
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+}
+
+.error-page-home-link:hover,
+.error-page-home-link:focus-visible {
+    opacity: 0.85;
+}
+
 /* Responsive Design */
 @media (width <= 768px) {
     .desktop-layout {

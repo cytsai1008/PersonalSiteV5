@@ -1,5 +1,7 @@
 # Personal Website V5
 
+## Introduction
+
 This is the 5th version of my personal website. It's a simple, responsive, and static website that showcases two different aspects of my life: "Real Life" and "Furry Life".
 
 ## Technologies Used
@@ -9,7 +11,7 @@ This is the 5th version of my personal website. It's a simple, responsive, and s
 *   **JavaScript:** The file `script.js` adds interactivity to the website, including hover effects, click animations, and a light/dark mode switcher.
 *   **Linting:** The project uses `eslint`, `htmlhint`, and `stylelint` to enforce code quality and consistency.
 
-## How to Run
+## Get Started
 
 This is a static website, so there is no build process. To run the website, simply open the `index.html` file in a web browser.
 
@@ -20,7 +22,7 @@ npm install -g http-server
 http-server
 ```
 
-## Linting
+## Code Quality
 
 To run the linters, you can use the following commands:
 
