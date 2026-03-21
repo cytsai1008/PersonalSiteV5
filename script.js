@@ -9,10 +9,19 @@
  * - A hover effect for the desktop layout that expands the sections.
  * - Click animations for profile images.
  */
-// Reveal Material Symbols icons only after the font is fully loaded
-document.fonts.load("1em 'Material Symbols Rounded'").then(() => {
-    document.documentElement.classList.add('material-symbols-loaded');
-});
+// Reveal Material Symbols icons only after the font is fully loaded.
+// Falls back to revealing on window load for browsers without Font Loading API support.
+// Always reveals (even on failure) so icons are never permanently hidden.
+(function () {
+    const reveal = () => document.documentElement.classList.add('material-symbols-loaded');
+    if (document.fonts && typeof document.fonts.load === 'function') {
+        document.fonts.load("1em 'Material Symbols Rounded'")
+            .catch(err => console.error('Material Symbols font failed to load:', err))
+            .finally(reveal);
+    } else {
+        window.addEventListener('load', reveal, { once: true });
+    }
+})();
 
 document.addEventListener('DOMContentLoaded', function () {
 
