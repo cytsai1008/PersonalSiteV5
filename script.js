@@ -9,17 +9,46 @@
  * - A hover effect for the desktop layout that expands the sections.
  * - Click animations for profile images.
  */
-// Reveal Material Symbols icons only after the font is fully loaded.
-// Falls back to revealing on window load for browsers without Font Loading API support.
-// Always reveals (even on failure) so icons are never permanently hidden.
+// Reveal Material Symbols icons only after the font is fully loaded,
+// with a safety timeout and fallbacks for browsers without Font Loading API support.
 (function () {
-    const reveal = () => document.documentElement.classList.add('material-symbols-loaded');
+    let revealed = false;
+    const revealOnce = () => {
+        if (revealed) return;
+        revealed = true;
+        document.documentElement.classList.add('material-symbols-loaded');
+    };
+
+    // Safety timeout: ensure icons are eventually shown even if font loading hangs.
+    const timeoutId = setTimeout(revealOnce, 3000);
+
+    const onFontLoadSettled = () => {
+        clearTimeout(timeoutId);
+        revealOnce();
+    };
+
     if (document.fonts && typeof document.fonts.load === 'function') {
-        document.fonts.load("1em 'Material Symbols Rounded'")
-            .catch(err => console.error('Material Symbols font failed to load:', err))
-            .finally(reveal);
+        const loadFont = () => {
+            document.fonts
+                .load("1em 'Material Symbols Rounded'")
+                .then(onFontLoadSettled)
+                .catch(onFontLoadSettled);
+        };
+
+        // Wait for document.fonts.ready to reduce the chance of resolving before
+        // the @font-face rule is registered by the Google Fonts stylesheet.
+        if (document.fonts.ready && typeof document.fonts.ready.then === 'function') {
+            document.fonts.ready.then(loadFont).catch(onFontLoadSettled);
+        } else {
+            loadFont();
+        }
     } else {
-        window.addEventListener('load', reveal, { once: true });
+        // Fallback for browsers without document.fonts: reveal after window load.
+        if (document.readyState === 'complete') {
+            onFontLoadSettled();
+        } else {
+            window.addEventListener('load', onFontLoadSettled, { once: true });
+        }
     }
 })();
 
