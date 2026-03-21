@@ -221,7 +221,7 @@ body {
 }
 
 html.material-symbols-loaded .material-symbols-rounded {
-    visibility: visible;
+    opacity: 1;
 }
 
 .name-section {
