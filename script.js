@@ -43,11 +43,13 @@
             loadFont();
         }
     } else {
-        // Fallback for browsers without document.fonts: reveal after window load.
-        if (document.readyState === 'complete') {
-            onFontLoadSettled();
+        // Fallback for browsers without document.fonts: reveal after DOM is parsed.
+        // DOMContentLoaded fires earlier than window load (which waits for images etc.),
+        // avoiding a lengthy flash of invisible icons.
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', onFontLoadSettled, { once: true });
         } else {
-            window.addEventListener('load', onFontLoadSettled, { once: true });
+            onFontLoadSettled();
         }
     }
 })();
