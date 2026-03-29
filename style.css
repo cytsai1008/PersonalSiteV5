@@ -146,6 +146,7 @@ body {
     border: none;
     margin: 0;
     border-radius: 0;
+
     /* AGENTS.md: Ensure hit targets are at least 24px (44px on mobile). */
     min-height: 44px; /* Minimum height for hit target */
     min-width: 44px; /* Minimum width for hit target */
@@ -199,6 +200,7 @@ body {
     justify-content: center;
     transition: all 0.3s ease;
     cursor: pointer;
+
     /* AGENTS.md: Ensure hit targets are at least 24px (44px on mobile). */
     min-height: 44px; /* Minimum height for hit target */
     min-width: 44px; /* Minimum width for hit target */
@@ -300,9 +302,11 @@ a.life-section {
     height: 2.5rem;
     border-radius: 8px;
     transition: background-color 0.2s ease;
+
     /* AGENTS.md: Ensure hit targets are at least 24px (44px on mobile). */
     min-height: 44px; /* Minimum height for hit target */
     min-width: 44px; /* Minimum width for hit target */
+
     /* AGENTS.md: Use touch-action: manipulation to prevent double-tap zoom. */
     touch-action: manipulation;
 }
@@ -325,6 +329,7 @@ a.life-section {
     border-radius: 8px;
     padding: 0.5rem;
     box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+
     /* AGENTS.md: Use overscroll-behavior: contain to prevent body scroll. */
     overscroll-behavior: contain;
 }
@@ -346,9 +351,11 @@ a.life-section {
     text-align: left;
     cursor: pointer;
     width: 100%;
+
     /* AGENTS.md: Ensure hit targets are at least 24px (44px on mobile). */
     min-height: 44px; /* Minimum height for hit target */
     min-width: 44px; /* Minimum width for hit target */
+
     /* AGENTS.md: Use touch-action: manipulation to prevent double-tap zoom. */
     touch-action: manipulation;
 }
