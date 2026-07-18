@@ -10,12 +10,13 @@
   <link rel="icon" href="assets/img/favicon-16.png" type="image/png" sizes="16x16">
 
   <!-- AGENTS.md: Preload above-the-fold images to improve performance. -->
+  <link rel="preload" href="assets/img/real_avatar.png" as="image">
   <link rel="preload" href="assets/img/furry_avatar.png" as="image">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL@24..48,100..700,0..1&icon_names=brightness_auto,dark_mode,light_mode,person,search_off"
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL@24..48,100..700,0..1&icon_names=brightness_auto,dark_mode,light_mode,search_off"
         rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <noscript><style>.material-symbols-rounded { opacity: 1; }</style></noscript>
@@ -81,8 +82,8 @@
       </div>
       <div class="profile-container">
         <div class="profile-image">
-          <!-- AGENTS.md: Hide decorative icons from screen readers. -->
-          <span class="material-symbols-rounded" aria-hidden="true">person</span>
+          <!-- AGENTS.md: Add width and height attributes to prevent layout shift (CLS). -->
+          <img src="assets/img/real_avatar.png" alt="Real Life Avatar" width="180" height="180">
         </div>
         <div class="name-section">
           <div class="name-text" data-translate="realLifeName">CYTsai</div>
